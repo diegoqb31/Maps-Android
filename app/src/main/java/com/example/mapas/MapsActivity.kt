@@ -1,12 +1,15 @@
 package com.example.mapas
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -14,7 +17,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.example.mapas.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.model.*
-import java.util.jar.Manifest
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener,
     GoogleMap.OnMyLocationClickListener, GoogleMap.OnMapClickListener {
@@ -22,7 +24,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var deliveryMarker: Marker
-    private var marcador: Boolean = false
+    private var flagMarker: Boolean = false
 
     companion object{
         const val REQUEST_CODE_LOCATION = 0
@@ -39,6 +41,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+       /* val buttonClick = findViewById<Button>(R.id.buttonConfirm)
+        buttonClick.setOnClickListener {
+            val intent = Intent(this, Prueba::class.java)
+            startActivity(intent)
+        }*/
 
     }
 
@@ -54,16 +61,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Sydney and move the camera
-        //val sydney = LatLng(-34.0, 151.0)
-        //mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         map.setOnMyLocationButtonClickListener(this)
         map.setOnMyLocationClickListener (this)
         createMarkers()
         enableLocation()
-
-
 
         map.setOnMapClickListener(this)
     }
@@ -181,20 +182,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMyLoca
 
 
     override fun onMapClick(p0: LatLng) {
-        if(this.marcador == true){
+        if(this.flagMarker == true){
             deliveryMarker.remove()
         }
-        Toast.makeText(
+        /*Toast.makeText(
             this,
             "Mi posición: ${p0.latitude} , ${p0.longitude}",
             Toast.LENGTH_SHORT
-        ).show()
+        ).show()*/
 
-        val markerOptions = MarkerOptions().position(p0)
+        val markerOptions = MarkerOptions().position(p0).draggable(true)
         val titleStr = "Punto de entrega"
         markerOptions.title(titleStr)
         deliveryMarker = map.addMarker(markerOptions)
-        this.marcador = true
+        this.flagMarker = true
+        val buttonConfirm = findViewById<Button>(R.id.buttonConfirm)
+        buttonConfirm.isVisible = true
     }
+
+
 
 }

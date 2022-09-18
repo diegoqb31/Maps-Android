@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/drawable/ic_logo_foreground.xml" value="0.343" />
-        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/layout/activity_maps.xml" value="0.18206521739130435" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/layout/activity_maps.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/layout/activity_prueba.xml" value="0.17831813576494426" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/layout/fragment_mapa.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
+        <entry key="..\:/AndroidStudio/Mapas/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.196" />
       </map>
     </option>
   </component>
